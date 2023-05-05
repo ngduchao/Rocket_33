@@ -52,5 +52,3 @@ CREATE TABLE table2(
     gender				ENUM('0','1','NULL') NOT NULL, -- 0 là male, 1 là female, NULL là unknown
     is_deleted_flag		BIT NOT NULL -- 0 là đang hoạt động, 1 là đã xóa
 );
-
-select *from table2
