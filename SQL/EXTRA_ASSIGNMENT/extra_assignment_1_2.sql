@@ -16,13 +16,13 @@ CREATE TABLE trainee(
     et_iq					INT CHECK (0 <= et_iq <= 20) NOT NULL,
     et_gmath				INT CHECK (0 <= et_gmath <= 20) NOT NULL,
     et_english				INT CHECK (0 <= et_english <= 50) NOT NULL,
-    training_class			CHAR(10) NOT NULL UNIQUE KEY,
+    training_class			CHAR(10) NOT NULL,
     evaluation_notes		TEXT	
 );
 
 -- question 2:
 ALTER TABLE trainee
-ADD COLUMN VTI_account 		INT NOT NULL UNIQUE KEY;
+ADD COLUMN VTI_account 		VARCHAR(30) NOT NULL UNIQUE KEY;
 
 
 -- Exercise 2
@@ -32,7 +32,7 @@ USE exercise2;
 
 DROP TABLE IF EXISTS table1;
 CREATE TABLE table1(
-	id					TINYINT	AUTO_INCREMENT PRIMARY KEY,
+	id					INT	AUTO_INCREMENT PRIMARY KEY,
     `name`				CHAR(50) NOT NULL,
     `code`				CHAR(5) NOT NULL UNIQUE KEY,
     modified_date		DATETIME NOT NULL DEFAULT NOW()
@@ -46,7 +46,7 @@ USE exercise3;
 
 DROP TABLE IF EXISTS table2;
 CREATE TABLE table2(
-	id					TINYINT AUTO_INCREMENT PRIMARY KEY,
+	id					INT AUTO_INCREMENT PRIMARY KEY,
     `name`				CHAR(50) NOT NULL,
     birth_date			DATETIME NOT NULL,
     gender				ENUM('0','1','NULL') NOT NULL, -- 0 là male, 1 là female, NULL là unknown
