@@ -32,7 +32,7 @@ CREATE TABLE `account`(
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group`(
 	group_id	INT	AUTO_INCREMENT PRIMARY KEY,
-    group_name	VARCHAR(30) UNIQUE KEY NOT NULL,
+    group_name	VARCHAR(30) NOT NULL,
     creator_id  INT NOT NULL,
     create_date	DATETIME NOT NULL DEFAULT NOW(),
     FOREIGN KEY (creator_id)	REFERENCES `account`(account_id)
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS answer;
 CREATE TABLE answer(
 	answer_id		INT AUTO_INCREMENT PRIMARY KEY,
     content			VARCHAR(100),
-    question_id		INT NOT NULL UNIQUE,
+    question_id		INT NOT NULL,
     iscorrect		ENUM('correct', 'incorrect') NOT NULL,
     FOREIGN KEY (question_id)	REFERENCES question(question_id)
 );
@@ -119,11 +119,11 @@ INSERT INTO `position`(position_name) VALUES
  
 
 INSERT INTO `account`(email, username, fullname, department_id, position_id, create_date) VALUES
-					('email1@gmail.com', 'nguyenhao', 	'Nguyễn Đức Hảo', 1, 3, '2023-05-01'),
-                    ('email2@gmail.com', 'nguyenhieu', 	'Nguyễn Quang Hiếu', 2, 1, '2023-05-01'),
-                    ('email3@gmail.com', 'duongthao', 	'Dương Thị Thảo', 5, 2, '2023-05-01'),
-                    ('email4@gmail.com', 'tranlinh', 	'Trần Thị Khánh Linh', 3, 4, '2023-05-01'),
-                    ('email5@gmail.com', 'duongha', 	'Dương Thị Thu Hà', 5, 1, '2023-05-01');
+					('email1@gmail.com', 'nguyenhao', 	'Nguyễn Đức Hảo', 	 	1, 3, '2023-05-01'),
+                    ('email2@gmail.com', 'nguyenhieu', 	'Nguyễn Quang Hiếu', 	2, 1, '2023-05-01'),
+                    ('email3@gmail.com', 'duongthao', 	'Dương Thị Thảo', 	 	5, 2, '2023-05-01'),
+                    ('email4@gmail.com', 'tranlinh', 	'Trần Thị Khánh Linh', 	3, 4, '2023-05-01'),
+                    ('email5@gmail.com', 'duongha', 	'Dương Thị Thu Hà', 	5, 1, '2023-05-01');
                     
                     
 INSERT INTO `group` (group_name, creator_id, create_date) VALUES
@@ -137,7 +137,7 @@ INSERT INTO `group` (group_name, creator_id, create_date) VALUES
 INSERT INTO group_account (group_id, account_id, join_date) VALUES
 							(1, 1, '2018-02-01'),
                             (1, 2, '2021-04-20'),
-                            (2, 3, '2023-05-01'),
+                            (2, 1, '2023-05-01'),
                             (2, 4, '2023-05-06'),
                             (3, 1, '2021-11-20'),
                             (3, 5, '2023-05-01'),
@@ -162,10 +162,10 @@ INSERT INTO category_question (category_name) VALUES
                                 
 INSERT INTO question (content, category_id, type_id, creator_id, create_date) VALUES
 					('câu hỏi về java', 	1, '1', 2, '2023-05-01'),
-                    ('câu hỏi phỏng vấn', 	2, '2', 1, '2023-05-01'),
-                    ('vấn đáp', 			3, '1', 4, '2023-05-01'),
-                    ('trắc nghiệm sql', 	4, '2', 5, '2023-05-01'),
-                    ('báo cáo thực nghiệm', 5, '1', 3, '2023-05-01');
+                    ('câu hỏi phỏng vấn', 	4, '2', 1, '2023-05-01'),
+                    ('vấn đáp', 			7, '1', 4, '2023-05-01'),
+                    ('trắc nghiệm sql', 	3, '2', 5, '2023-05-01'),
+                    ('báo cáo thực nghiệm', 3, '1', 3, '2023-05-01');
                     
 	
 INSERT INTO answer (content, question_id, iscorrect) VALUES
@@ -190,5 +190,3 @@ INSERT INTO exam_question (question_id) VALUES
                             (4),
                             (1),
                             (5);
-
-
